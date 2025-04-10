@@ -1,5 +1,2 @@
-dotnet tool install -g Microsoft.Web.LibraryManager.Cli
-
-export PATH=/Users/{username}/.dotnet/tools:$PATH
-
-/opt/homebrew/opt/mariadb/bin/mariadbd-safe --datadir\=/opt/homebrew/var/mysql
+# Secret Hitler
+Secret Hitler is a social deducation game about stopping a facist takeover. All credit goes to Goat, Wolf, & Cabbage LLC. Buy the game at: https://www.secrethitler.com/#objectors. This software licensed under [Creative Commons BY–NC–SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0). 

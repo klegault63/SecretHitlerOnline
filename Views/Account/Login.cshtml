@@ -1,0 +1,31 @@
+@model LoginViewModel
+
+<div>
+    <form class="col-6 offset-3" method="post" action="@Url.Action("Login", "Account")" enctype="multipart/form-data">
+        <div class="row mb-2 align-items-center">
+            <div class="col-2">
+                @Html.LabelFor(x => x.Username, new { @class = "form-label ms-auto" })
+            </div>
+            <div class="col-10">
+                @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-2 align-items-center">
+            <div class="col-2">
+                @Html.LabelFor(x => x.Password, new { @class = "form-label ms-auto" })
+            </div>
+            <div class="col-10">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-2 align-items-center">
+            <div class="col-2">
+                @Html.LabelFor(x => x.RememberMe, new { @class = "form-label ms-auto" })
+            </div>
+            <div class="col-10">
+                @Html.CheckBoxFor(x => x.RememberMe, new { @class = "" })
+            </div>
+        </div>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+</div>

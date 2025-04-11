@@ -16,7 +16,6 @@ public class HomeController : Controller
 
   public IActionResult Index()
   {
-    var users = _userService.GetAllUser("");
     return View();
   }
 

@@ -29,3 +29,8 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/* Secret Hitler Custom */
+input.input-validation-error {
+  outline: #DC4C64;
+}

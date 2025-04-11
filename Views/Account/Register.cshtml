@@ -1,0 +1,53 @@
+@model RegisterViewModel
+
+<form id="registerForm" class="col-6 offset-3" method="post" action="@Url.Action("Register", "Account")"
+      enctype="multipart/form-data">
+    <div class="row mb-2 align-items-center">
+        <div class="col-2">
+            @Html.LabelFor(x => x.Email, new { @class = "form-label ms-auto" })
+        </div>
+        <div class="col-10">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row mb-2 align-items-center">
+        <div class="col-2">
+            @Html.LabelFor(x => x.Username, new { @class = "form-label ms-auto" })
+        </div>
+        <div class="col-10">
+            @Html.TextBoxFor(x => x.Username, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="row mb-2 align-items-center">
+        <div class="col-2">
+            @Html.LabelFor(x => x.Password, new { @class = "form-label ms-auto"})
+        </div>
+        <div class="col-10">
+            @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @type="password" })
+        </div>
+    </div>
+    <div class="row mb-2 align-items-center">
+        <div class="col-2">
+            @Html.LabelFor(x => x.ConfirmPassword, new { @class = "form-label ms-auto" })
+        </div>
+        <div class="col-10">
+            @Html.TextBoxFor(x => x.ConfirmPassword, new { @class = "form-control", @type="password" })
+        </div>
+    </div>
+    <button id="registerFormSubmit" class="btn btn-success" type="submit">Submit</button>
+    
+    @Html.ValidationSummary()
+</form>
+
+@section Scripts {
+    <script>
+        $("#registerFormSubmit").click(function (e) {
+            e.preventDefault();
+            const form = $("#registerForm");
+
+            if (form.valid()) {
+                form.submit();
+            }
+        })
+    </script>
+}

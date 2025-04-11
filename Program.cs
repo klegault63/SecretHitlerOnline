@@ -1,7 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using SecretHitler;
 using SecretHitler.Hubs;
 using SecretHitler.Services;
+using SecretHitler.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +17,20 @@ builder.Services.AddDbContext<SHContext>(options =>
 
 builder.Services.AddScoped<UserService>();
 
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<SHContext>()
+    .AddDefaultTokenProviders();
+
+builder.Services.ConfigureApplicationCookie(options => {
+    options.LoginPath = "/Account/Login";
+    options.AccessDeniedPath = "/Account/AccessDenied";
+});
+
 var app = builder.Build();
 
 
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
+if (!app.Environment.IsDevelopment()){
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
@@ -28,8 +38,13 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseRouting();
-
+app.UseAuthentication();
 app.UseAuthorization();
+
+// Seed roles
+using var scope = app.Services.CreateScope();
+await DbInitializer.SeedRoles(scope.ServiceProvider);
+
 
 app.MapStaticAssets();
 
